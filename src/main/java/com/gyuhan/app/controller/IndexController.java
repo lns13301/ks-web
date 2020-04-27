@@ -34,7 +34,7 @@ public class IndexController {
         List<Work> works = workRepository.findAll();
 
         model.addAttribute("person", person);
-        model.addAttribute("socialMedial", socialMedia);
+        model.addAttribute("socialMedia", socialMedia);
         model.addAttribute("interests", interests);
         model.addAttribute("skills", skills);
         model.addAttribute("works", works);
