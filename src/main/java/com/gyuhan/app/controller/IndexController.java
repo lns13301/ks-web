@@ -1,13 +1,7 @@
 package com.gyuhan.app.controller;
 
-import com.gyuhan.app.entity.Interests;
-import com.gyuhan.app.entity.Person;
-import com.gyuhan.app.entity.Skill;
-import com.gyuhan.app.entity.SocialMedia;
-import com.gyuhan.app.repository.InterestsRepository;
-import com.gyuhan.app.repository.PersonRepository;
-import com.gyuhan.app.repository.SkillRepository;
-import com.gyuhan.app.repository.SocialMediaRepository;
+import com.gyuhan.app.entity.*;
+import com.gyuhan.app.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +15,14 @@ public class IndexController {
     private final SocialMediaRepository socialMediaRepository;
     private final InterestsRepository interestsRepository;
     private final SkillRepository skillRepository;
+    private final WorkRepository workRepository;
 
-    public IndexController(PersonRepository personRepository, SocialMediaRepository socialMediaRepository, InterestsRepository interestsRepository, SkillRepository skillRepository) {
+    public IndexController(PersonRepository personRepository, SocialMediaRepository socialMediaRepository, InterestsRepository interestsRepository, SkillRepository skillRepository, WorkRepository workRepository) {
         this.personRepository = personRepository;
         this.socialMediaRepository = socialMediaRepository;
         this.interestsRepository = interestsRepository;
         this.skillRepository = skillRepository;
+        this.workRepository = workRepository;
     }
 
     @GetMapping("/")
@@ -35,11 +31,13 @@ public class IndexController {
         SocialMedia socialMedia = socialMediaRepository.findAll().stream().findFirst().orElse(null);
         Interests interests = interestsRepository.findAll().stream().findFirst().orElse(null);
         List<Skill> skills = skillRepository.findAll();
+        List<Work> works = workRepository.findAll();
 
         model.addAttribute("person", person);
         model.addAttribute("socialMedial", socialMedia);
         model.addAttribute("interests", interests);
         model.addAttribute("skills", skills);
+        model.addAttribute("works", works);
 
         return "resume";
     }

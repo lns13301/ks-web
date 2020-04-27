@@ -1,13 +1,7 @@
 package com.gyuhan.app;
 
-import com.gyuhan.app.entity.Interests;
-import com.gyuhan.app.entity.Person;
-import com.gyuhan.app.entity.Skill;
-import com.gyuhan.app.entity.SocialMedia;
-import com.gyuhan.app.repository.InterestsRepository;
-import com.gyuhan.app.repository.PersonRepository;
-import com.gyuhan.app.repository.SkillRepository;
-import com.gyuhan.app.repository.SocialMediaRepository;
+import com.gyuhan.app.entity.*;
+import com.gyuhan.app.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,12 +13,14 @@ public class AppApplication implements CommandLineRunner {
 	private final SocialMediaRepository socialMediaRepository;
 	private final InterestsRepository interestsRepository;
 	private final SkillRepository skillRepository;
+	private final WorkRepository workRepository;
 
-	public AppApplication(PersonRepository personRepository, SocialMediaRepository socialMediaRepository, InterestsRepository interestsRepository, SkillRepository skillRepository) {
+	public AppApplication(PersonRepository personRepository, SocialMediaRepository socialMediaRepository, InterestsRepository interestsRepository, SkillRepository skillRepository, WorkRepository workRepository) {
 		this.personRepository = personRepository;
 		this.socialMediaRepository = socialMediaRepository;
 		this.interestsRepository = interestsRepository;
 		this.skillRepository = skillRepository;
+		this.workRepository = workRepository;
 	}
 
 	public static void main(String[] args) {
@@ -39,5 +35,6 @@ public class AppApplication implements CommandLineRunner {
 		interestsRepository.save(new Interests("프로그래밍"));
 		skillRepository.save(new Skill("Java", 70));
 		skillRepository.save(new Skill("C#", 60));
+		workRepository.save(new Work("3학년", "DB Labs", "4분기", "우아한 테크 코스 프로그램 준비"));
 	}
 }
