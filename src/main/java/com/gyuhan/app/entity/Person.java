@@ -1,8 +1,10 @@
 package com.gyuhan.app.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Person {
     @Id
     @GeneratedValue
@@ -11,6 +13,10 @@ public class Person {
     private String job;
     private String email;
     private String phoneNo;
+
+    public Person() {
+
+    }
 
     public Person(String name, String job, String email, String phoneNo) {
         this.name = name;
